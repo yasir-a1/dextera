@@ -2,13 +2,13 @@
 #include <WiFi.h>
 #include <esp_wifi.h>   // for esp_wifi_set_channel
 #include <Arduino.h>
-#include <Servo.h>
+#include <ESP32Servo.h>
 
 Servo s1, s2, s3, s4;
 const uint8_t s1Pin = 33;
-const uint8_t s1Pin = 25;
-const uint8_t s1Pin = 26;
-const uint8_t s1Pin = 27;
+const uint8_t s2Pin = 25;
+const uint8_t s3Pin = 26;
+const uint8_t s4Pin = 27;
 
 
 

@@ -41,7 +41,10 @@ void readPotValues(){
   pot2Value = analogRead(pot2);
   pot3Value = analogRead(pot3);
   pot4Value = analogRead(pot4);
-
+  
+  Serial.print("Pot 32: ");
+  Serial.println(pot1Value);
+  
 }
 
 
@@ -61,7 +64,8 @@ void handPositionRead(){
     else{
       currentHandPosition = 0;
     }
-}
+ }
+} 
 
 void buildMessage(){
   exoskeletonPositionData.motor1 = map(pot1Value, 0, 4095, 0, 180);
@@ -69,11 +73,24 @@ void buildMessage(){
   exoskeletonPositionData.motor3 = map(pot3Value, 0, 4095, 0, 180);
   exoskeletonPositionData.motor4 = map(pot4Value, 0, 4095, 0, 180);
   exoskeletonPositionData.handPosition = currentHandPosition;
+  Serial.print("motor1: ");
+  Serial.println(exoskeletonPositionData.motor1);
+  Serial.print("motor2: ");
+  Serial.println(exoskeletonPositionData.motor2);
+  Serial.print("motor3: ");
+  Serial.println(exoskeletonPositionData.motor3);
+  Serial.print("motor4: ");
+  Serial.println(exoskeletonPositionData.motor4);
+  Serial.print("handPosition: ");
+  Serial.println(exoskeletonPositionData.handPosition);
+  Serial.println();
 }
 
 void setup() {
   Serial.begin(9600);
   WiFi.mode(WIFI_STA);
+  pinMode(25, OUTPUT);   // Set the pin as output
+  digitalWrite(25, HIGH); // Power ON (3.3V)
   esp_wifi_set_channel(6, WIFI_SECOND_CHAN_NONE); // lock channel
   analogReadResolution(12);
 
@@ -114,7 +131,7 @@ void loop() {
   else{
     Serial.println("Error sending the data");
   }
-  delay(50);
+  delay(500);
     
 
 }
