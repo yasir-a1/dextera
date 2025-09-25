@@ -70,7 +70,10 @@ void handPositionRead(){
 void buildMessage(){
   exoskeletonPositionData.motor1 = map(pot1Value, 0, 4095, 0, 180);
   exoskeletonPositionData.motor2 = map(pot2Value, 0, 4095, 0, 180);
-  exoskeletonPositionData.motor3 = map(pot3Value, 0, 4095, 0, 180);
+  exoskeletonPositionData.motor3 = map(pot3Value, 520, 3300, 0, 165);
+  if (exoskeletonPositionData.motor3 > 170){
+    exoskeletonPositionData.motor3 = 0;
+  }
   exoskeletonPositionData.motor4 = map(pot4Value, 0, 4095, 0, 180);
   exoskeletonPositionData.handPosition = currentHandPosition;
   Serial.print("motor1: ");

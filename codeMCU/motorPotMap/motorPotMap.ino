@@ -15,7 +15,9 @@ void setup() {
 void loop() {
   int sensorValue = analogRead(33);
   Serial.println(sensorValue);
-  delay(50);
-  int motorPos = map(sensorValue, 0, 4095, 0, 180);
+  delay(250);
+  int motorPos = map(sensorValue, 520, 3300, 0, 165);
+  //520 at 180, 3300 at 165
   myservo.write(motorPos); 
+  Serial.println(motorPos);
 }
