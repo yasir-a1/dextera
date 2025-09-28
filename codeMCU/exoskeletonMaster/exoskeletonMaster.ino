@@ -42,8 +42,8 @@ void readPotValues(){
   pot3Value = analogRead(pot3);
   pot4Value = analogRead(pot4);
   
-  Serial.print("Pot 32: ");
-  Serial.println(pot1Value);
+  Serial.print("Pot 35: ");
+  Serial.println(pot4Value);
   
 }
 
@@ -68,13 +68,17 @@ void handPositionRead(){
 } 
 
 void buildMessage(){
-  exoskeletonPositionData.motor1 = map(pot1Value, 0, 4095, 0, 180);
-  exoskeletonPositionData.motor2 = map(pot2Value, 0, 4095, 0, 180);
-  exoskeletonPositionData.motor3 = map(pot3Value, 520, 3300, 0, 165);
-  if (exoskeletonPositionData.motor3 > 170){
-    exoskeletonPositionData.motor3 = 0;
+  exoskeletonPositionData.motor1 = map(pot3Value, 0, 4095, 45, 45);
+  exoskeletonPositionData.motor3 = map(pot2Value, 0, 4095, 0, 180);
+  exoskeletonPositionData.motor2 = map(pot3Value, 470, 3300, 0, 165);
+  if (exoskeletonPositionData.motor2 > 170){
+    exoskeletonPositionData.motor2 = 0;
   }
-  exoskeletonPositionData.motor4 = map(pot4Value, 0, 4095, 0, 180);
+  exoskeletonPositionData.motor4 = map(pot4Value, 0, 1910, 0, 120);
+  if (exoskeletonPositionData.motor4 > 125){
+    exoskeletonPositionData.motor4 = 0;
+  }
+  //440 at 90 degrees, 1930 at 180 SO 0-117 map to 0-1930
   exoskeletonPositionData.handPosition = currentHandPosition;
   Serial.print("motor1: ");
   Serial.println(exoskeletonPositionData.motor1);
